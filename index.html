@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Astrozex</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Astrozex</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="https://discord.gg/invites.epmx">Store</a>
+      <a href="https://guns.lol/astrozex">Social</a>
+    </nav>
+  </header>
+
+  <!-- Bio -->
+  <section class="glass-box bio-box">
+    <img src="https://minotar.net/avatar/AstroZex/150" class="avatar" alt="Minecraft Avatar">
+    <div class="bio-text">
+      <h2 class="yellow-title">Astrozex | <span id="typewriter"></span><span class="cursor">_</span></h2>
+      <p>Hello! I'm Astro Zex, a Minecraft enthusiast and digital creator. I run communities and explore tech. I love to build discord bots! I love to create websites! My real name is "Labib Shahriar" and I am currently reading in class 9.</p>
+    </div>
+  </section>
+
+  <!-- Socials -->
+  <section class="glass-box socials-box">
+    <h3>My Socials</h3>
+    <div class="button-grid">
+      <a href="https://discord.gg/empx">Discord</a>
+      <a href="https://www.youtube.com/@astrozexyt">YouTube</a>
+      <a href="https://www.instagram.com/itz.astrozex/">Instagram</a>
+      <a href="https://www.tiktok.com/">TikTok</a>
+    </div>
+  </section>
+
+  <!-- Crypto -->
+  <section class="glass-box crypto-box">
+    <h3>My Crypto Wallet</h3>
+    <div class="wallet-buttons">
+      <button onclick="copyWallet('LiteCoin', 'LMDZs6H6KPRavTWcPV6ERtq6heBBKs5Ets')">LiteCoin</button>
+      <button onclick="copyWallet('BitCoin', 'bc1qfc548ahdvh8r8aa3vz6ndj6gl45gk5m29c8gvj')">BitCoin</button>
+    </div>
+    <p id="copy-msg"></p>
+  </section>
+
+  <!-- Minecraft Server -->
+  <section class="glass-box crypto-box">
+    <h3>My Minecraft Server</h3>
+    <div class="wallet-buttons">
+      <button onclick="window.location.href='https://discord.gg/gwp8ZUrR6J'">Join Discord</button>
+    </div>
+    <p>Server will launch very soon</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Astrozex | <span id="current-date"></span></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById("current-date").innerText = new Date().toLocaleDateString();
+
+    function copyWallet(name, value) {
+      navigator.clipboard.writeText(value).then(() => {
+        document.getElementById("copy-msg").innerText = `You just copied ${name} addy`;
+        setTimeout(() => {
+          document.getElementById("copy-msg").innerText = "";
+        }, 3000);
+      });
+    }
+
+    // Smooth Typewriter
+    const roles = ["Bot Dev", "Py Dev", "Website Dev"];
+    let index = 0;
+    let char = 0;
+    let typing = true;
+    const speed = 120;
+    const delayBetween = 1500;
+    const typewriter = document.getElementById("typewriter");
+
+    function typeEffect() {
+      const current = roles[index];
+      if (typing) {
+        typewriter.textContent = current.substring(0, char++);
+        if (char > current.length) {
+          typing = false;
+          setTimeout(typeEffect, delayBetween);
+          return;
+        }
+      } else {
+        typewriter.textContent = current.substring(0, char--);
+        if (char < 0) {
+          typing = true;
+          index = (index + 1) % roles.length;
+        }
+      }
+      setTimeout(typeEffect, typing ? speed : 50);
+    }
+
+    typeEffect();
+  </script>
+
+</body>
+</html>
